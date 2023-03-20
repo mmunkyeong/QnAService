@@ -21,8 +21,6 @@ public class Answer {
 
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    // OneToMany 애너테이션에 사용된 mappedBy는 참조 엔티티의 속성명
-    // question을 answer에 전달
-    private List<Answer> answerList;
+    @ManyToOne //N:1 답변은 하나의 질문에 여러개가 달릴 수 있음
+    private Question question;
 }

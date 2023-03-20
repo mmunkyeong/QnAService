@@ -1,13 +1,27 @@
+server:
+  port: 8010 # ?? ??(???? 8080)
 spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false # ???? ?? ??
+    prefix: file:src/main/resources/templates/ # ???? ?? ??(? ??? ?? ??)
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/d1?serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3307/db1?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: root
     password: 1226
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update # DB ??? ????(??? ???? ??? ?)
+    properties:
       hibernate:
-        ddl-auto: update
-      properties:
-        hibernate:
-          show_sql: true
-          format_sql: true
+        show_sql: true
+        format_sql: true #sql ???? ? ? ????
+        use_sql_comments: true  #JPQL
+
