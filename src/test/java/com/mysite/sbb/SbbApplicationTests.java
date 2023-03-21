@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -166,6 +167,7 @@ class SbbApplicationTests {
     }
 
     @Transactional //메서드가 종료될 때까지 DB세션 유지
+    @Rollback(false)
     @Test
     @DisplayName("질문에 달린 답변 찾기")
     void t011() {
