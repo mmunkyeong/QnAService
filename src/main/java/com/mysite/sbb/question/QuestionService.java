@@ -1,33 +1,36 @@
 package com.mysite.sbb.question;
 
-import com.mysite.sbb.DataNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+import com.mysite.sbb.DataNotFoundException;
+
+import lombok.RequiredArgsConstructor;
+
 @RequiredArgsConstructor
-@Service // 서비스로 인식
+@Service
 public class QuestionService {
+
     private final QuestionRepository questionRepository;
 
-    public List<Question> getList(){ //질문 목록 조회
+    public List<Question> getList() {
         return this.questionRepository.findAll();
     }
 
-    public Question getQuestion(Integer id){
-        Optional<Question> question=this.questionRepository.findById(id);
-        if(question.isPresent()){
+    public Question getQuestion(Integer id) {
+        Optional<Question> question = this.questionRepository.findById(id);
+        if (question.isPresent()) {
             return question.get();
-        }else{
+        } else {
             throw new DataNotFoundException("question not found");
         }
     }
 
-    public void create(String subject, String content){ //질문 데이터 저장
-        Question q= new Question();
+    public void create(String subject, String content) {
+        Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
