@@ -22,7 +22,7 @@ public class QuestionController {
         return "question_list";
     }
 
-    @GetMapping(value="/detail/{id}") //id와 PathVariable id와 동일 해야함
+    @GetMapping("/detail/{id}") //id와 PathVariable id와 동일 해야함
     public String detail(Model model, @PathVariable("id") Integer id){
         Question question=this.questionService.getQuestion(id);
         model.addAttribute("question",question);
