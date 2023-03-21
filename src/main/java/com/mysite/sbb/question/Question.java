@@ -1,6 +1,7 @@
 package com.mysite.sbb.question;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysite.sbb.answer.Answer;
@@ -25,9 +26,20 @@ public class Question {
     private String content;
 
     private LocalDateTime createDate;
-
+    // OneToMany 자바세상에서의 편의를 위해서 필드 생성
+    // 이 녀석은 실제 DB 테이블에 칼럼이 생성되지 않는다.
+    // DB는 배열이나 리스트를 저장할 수 없다.
+    // 칼럼에 저장할 수 없다.
+    // 만들어도 되고 안 만들어도 ok
+    // 다만 만들면 해당 객체(질문객체)에서 관련된 답변들을 찾을 때 편합니다.
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     // OneToMany 애너테이션에 사용된 mappedBy는 참조 엔티티의 속성명
     // question을 answer에 전달
-    private List<Answer> answerList;
+    // OneToMany 에는 직접객체초기화
+    private List<Answer> answerList=new ArrayList<>();
+
+    public void addAnswer(Answer a) {
+        a.setQuestion(this);
+        answerList.add(a);
+    }
 }
