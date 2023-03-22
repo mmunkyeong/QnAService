@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.mysite.sbb.user.SiteUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,13 +39,12 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser user) {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
+        q.setAuthor(user);
         this.questionRepository.save(q);
     }
-
-
 }

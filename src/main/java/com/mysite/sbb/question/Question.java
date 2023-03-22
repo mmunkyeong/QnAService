@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -42,4 +43,6 @@ public class Question {
         a.setQuestion(this);
         answerList.add(a);
     }
+    @ManyToOne
+    private SiteUser author; // 여러개의 질문이 한명의 사용자에게 작성될 수 있음
 }
