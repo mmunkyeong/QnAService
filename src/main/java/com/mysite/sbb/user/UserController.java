@@ -44,4 +44,9 @@ public class UserController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/login")
+    public String login(){ //post방식의 메서드는 스프링 시큐리티가 대신처리 직접 구혀할 필요 x
+        return "login_form";
+    }
 }
