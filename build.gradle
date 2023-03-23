@@ -35,6 +35,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security' //스프링 시큐리티
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+
+	implementation 'org.commonmark:commonmark:0.21.0' // 마크다운 설치
+	//스프링부트가 내부적으로 관리하는 라이브러리가 아니기 때문에 버전 명시
 }
 
 tasks.named('test') {
