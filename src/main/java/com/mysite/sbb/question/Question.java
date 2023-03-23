@@ -3,6 +3,7 @@ package com.mysite.sbb.question;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.user.SiteUser;
@@ -47,4 +48,7 @@ public class Question {
     private SiteUser author; // 여러개의 질문이 한명의 사용자에게 작성될 수 있음
 
     private LocalDateTime modifyDate; //수정일시
+
+    @ManyToMany
+    Set<SiteUser> voter; // 추천인은 중복 x =>set
 }

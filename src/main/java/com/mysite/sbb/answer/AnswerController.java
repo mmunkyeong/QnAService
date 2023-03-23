@@ -70,6 +70,8 @@ public class AnswerController {
         return String.format("redirect:/question/detail/%s",answer.getQuestion().getId());
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
     public String answerDelete(Principal principal, @PathVariable("id") Integer id){
         Answer answer=this.answerService.getAnswer(id);
         if(!answer.getAuthor().getUsername().equals(principal.getName())){
@@ -78,5 +80,14 @@ public class AnswerController {
         this.answerService.delete(answer);
         //질문 삭제 후 답변이 있던 상세화면으로 리다이렉트
         return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+    }
+
+    @PreAuthorize("isAuthenticated()") //추천은 로그인 한 사람만 가능
+    @GetMapping("/vote/{id}")
+    public String answerVote(Principal principal, @PathVariable("id") Integer id){
+        Answer answer=this.answerService.getAnswer(id);
+        SiteUser siteUser=this.userService.getUser(principal.getName());
+        this.answerService.vote(answer,siteUser);
+        return String.format("redirect:/question/detail/%s",answer.getQuestion().getId());
     }
 }

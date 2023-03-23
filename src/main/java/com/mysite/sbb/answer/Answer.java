@@ -1,6 +1,7 @@
 package com.mysite.sbb.answer;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.user.SiteUser;
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ManyToAny;
 
 @Getter
 @Setter
@@ -29,4 +31,7 @@ public class Answer {
     private SiteUser author;
 
     private LocalDateTime modifyDate;
+
+    @ManyToMany
+    Set<SiteUser> voter;
 }

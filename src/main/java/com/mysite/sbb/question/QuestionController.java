@@ -95,4 +95,14 @@ public class QuestionController {
         this.questionService.delete(question);
         return "redirect:/";
     }
+
+    @PreAuthorize("isAuthenticated()") //추천은 로그인한 사람만 가능
+    @GetMapping("/vote/{id}")
+    public String questionVote(Principal principal, @PathVariable("id") Integer id){
+        Question question=this.questionService.getQuestion(id);
+        SiteUser siteUser=this.userService.getUser(principal.getName());
+
+        this.questionService.vote(question,siteUser); //vote메서드를 호출하여 추천인저장
+        return String.format("redirect:/question/detail/%s",id);
+    }
 }
