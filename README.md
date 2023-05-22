@@ -1,10 +1,12 @@
 # QnAService
-스프링부트 QnA게시판 구현 ✏️
+
 
 ![image](https://github.com/mmunkyeong/QnAService/assets/62290451/cec0bb1d-958f-42e9-8e53-4f5729c58f65)
 ![image](https://github.com/mmunkyeong/QnAService/assets/62290451/9af61844-748b-4100-8664-fe1f958d4736)
 
 <br>
+
+## 구현 기능
 
 - 회원가입, 로그인, 로그아웃
 - 질문 상세, 답변 등록
